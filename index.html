@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warmindo - Rasa Bintang Lima Harga Kaki Lima</title>
+
+<!-- Open Graph untuk preview logo pas dishare -->
+<meta property="og:title" content="Warmindo - Order Online">
+<meta property="og:description" content="Rasa Bintang Lima Harga Kaki Lima. Order langsung dari HP.">
+<meta property="og:image" content="https://kedai-warmindo-ala-bale.web.app/logo-warmindo.png">
+<meta property="og:url" content="https://kedai-warmindo-ala-bale.web.app">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#D4AF37">
+<link rel="apple-touch-icon" href="icon-192.png">
+<script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
+</head>
+<body>
+<div class="header"><h2 id="storeName">Loading...</h2></div>
+<div id="menuList"></div>
+
+<div id="cartBar" class="cart" style="display:none">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <div><b id="cartCount">0 item</b><br><small id="cartTotal">Rp0</small></div>
+    <button class="btn btn-primary" onclick="openCheckout()">Checkout</button>
+  </div>
+</div>
+
+<div id="checkoutModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:100;align-items:center;justify-content:center;padding:20px">
+  <div style="background:var(--panel);padding:20px;border-radius:12px;max-width:500px;width:100%;max-height:90vh;overflow-y:auto">
+    <h3>Checkout</h3>
+    <input type="text" id="custName" placeholder="Nama Lengkap">
+    <input type="tel" id="custPhone" placeholder="No WA">
+    <select id="orderType" onchange="toggleAddress()">
+      <option value="dinein">Makan di Tempat</option>
+      <option value="delivery">Delivery</option>
+    </select>
+    <textarea id="custAddress" placeholder="Alamat Lengkap" style="display:none"></textarea>
+
+    <div id="chargesBox" style="background:var(--panel-2);padding:12px;border-radius:8px;margin:10px 0">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+        <span>Diskon (%)</span>
+        <input type="number" id="discountPercent" value="0" min="0" max="100" style="width:80px" oninput="calcCharges()">
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+        <span>Pajak (%)</span>
+        <input type="number" id="taxPercent" value="0" min="0" max="100" style="width:80px" oninput="calcCharges()">
+      </div>
+      <div style="display:flex;justify-content:space-between">
+        <span>Biaya Layanan</span>
+        <input type="number" id="serviceFee" value="0" min="0" style="width:80px" oninput="calcCharges()">
+      </div>
+    </div>
+
+    <select id="paymentMethod" onchange="togglePaymentInfo()">
+      <option value="cod">COD - Bayar di Tempat</option>
+      <option value="transfer">Transfer Bank/DANA</option>
+    </select>
+    <div id="paymentInfo"></div>
+    <div id="orderSummary"></div>
+    <div style="display:flex;gap:10px;margin-top:15px">
+      <button onclick="closeCheckout()" class="btn btn-secondary" style="flex:1">Batal</button>
+      <button onclick="placeOrder()" class="btn btn-primary" style="flex:1">Buat Pesanan</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

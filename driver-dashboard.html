@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Driver Dashboard - Warmindo</title>
+
+<meta property="og:title" content="Warmindo Driver">
+<meta property="og:description" content="Dashboard Driver Warmindo">
+<meta property="og:image" content="https://kedai-warmindo-ala-bale.web.app/logo-warmindo.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#D4AF37">
+<link rel="apple-touch-icon" href="icon-192.png">
+<script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
+</head>
+<body>
+<div class="header">
+  <h3 id="driverName">Loading...</h3>
+  <p id="driverPhone" style="color:var(--muted)"></p>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showDriverTab('active')">Aktif</div>
+  <div class="tab" onclick="showDriverTab('history')">Riwayat</div>
+</div>
+
+<div id="driverActive" class="tab-content active"></div>
+<div id="driverHistory" class="tab-content"></div>
+
+<script type="module" src="driver-dashboard.js"></script>
+</body>
+</html>

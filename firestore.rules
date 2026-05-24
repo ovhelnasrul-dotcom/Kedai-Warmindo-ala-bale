@@ -1,0 +1,16 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /data/main {
+      allow read: if true;
+      allow write: if true;
+    }
+    match /orders/{orderId} {
+      allow create: if request.resource.data.nama != null;
+      allow read, update, delete: if true;
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

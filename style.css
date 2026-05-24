@@ -1,0 +1,71 @@
+:root{
+  --bg:#0f1115;
+  --panel:#1a1d23;
+  --panel-2:#2a2f38;
+  --text:#fff;
+  --muted:#9aa0a6;
+  --gold:#D4AF37;
+  --border:#2a2f38;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;padding:20px}
+h2,h3,h4{margin-bottom:12px}
+
+.header{background:var(--panel);padding:16px;border-radius:12px;margin-bottom:20px;text-align:center}
+.category{margin:20px 0 10px;font-weight:600;color:var(--gold)}
+.product{background:var(--panel);padding:16px;border-radius:12px;margin-bottom:12px;display:flex;align-items:center}
+
+.btn{padding:10px 16px;border:none;border-radius:8px;font-weight:600;cursor:pointer}
+.btn-primary{background:var(--gold);color:#000}
+.btn-secondary{background:var(--panel-2);color:var(--text);border:1px solid var(--border)}
+
+input,select,textarea{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  background:var(--panel-2);
+  color:var(--text);
+  font-size:14px;
+  margin-bottom:10px
+}
+
+.cart{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:var(--panel);
+  padding:16px;
+  border-top:1px solid var(--border)
+}
+
+.tabs{display:flex;gap:10px;margin-bottom:20px;overflow-x:auto}
+.tab{padding:10px 20px;background:var(--panel);border-radius:8px;cursor:pointer;white-space:nowrap}
+.tab.active{background:var(--gold);color:#000}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+.order-card,.driver-card{
+  background:var(--panel);
+  padding:16px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  margin-bottom:12px
+}
+
+.status-badge{
+  padding:4px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:600;
+  display:inline-block
+}
+
+.status-pending{background:#D4AF37;color:#000}
+.status-waiting_confirm{background:#FF9800;color:#000}
+.status-process{background:#2196F3;color:#fff}
+.status-done{background:#4CAF50;color:#fff}
+.status-cancelled{background:#f44336;color:#fff}
+.empty{text-align:center;color:var(--muted);padding:40px}

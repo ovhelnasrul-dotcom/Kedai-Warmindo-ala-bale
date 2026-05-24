@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Backoffice - Warmindo</title>
+
+<meta property="og:title" content="Warmindo Admin">
+<meta property="og:description" content="Backoffice Warmindo">
+<meta property="og:image" content="https://kedai-warmindo-ala-bale.web.app/logo-warmindo.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#D4AF37">
+<link rel="apple-touch-icon" href="icon-192.png">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
+</head>
+<body>
+<h2 id="storeName">Admin Panel</h2>
+<div class="tabs">
+  <div class="tab active" onclick="showAdminTab('orders')">Pesanan</div>
+  <div class="tab" onclick="showAdminTab('menu')">Menu</div>
+  <div class="tab" onclick="showAdminTab('settings')">Setting</div>
+  <div class="tab" onclick="showAdminTab('reports')">Laporan</div>
+</div>
+
+<div id="adminOrders" class="tab-content active"></div>
+
+<div id="adminMenu" class="tab-content">
+  <div id="categoryList"></div>
+  <button onclick="addCategory()" class="btn-secondary" style="margin:10px 0">Tambah Kategori</button>
+  <div id="productList"></div>
+  <button onclick="addProduct()" class="btn-primary">Tambah Produk</button>
+</div>
+
+<div id="adminSettings" class="tab-content">
+  <div style="background:var(--panel);padding:20px;border-radius:8px;border:1px solid var(--border)">
+    <h4>Setting Toko</h4>
+    <input type="text" id="settingStoreName" placeholder="Nama Toko">
+    <input type="text" id="settingWA" placeholder="Nomor WA Admin 628xxx">
+    <input type="text" id="settingAddress" placeholder="Alamat Toko">
+    <button onclick="saveSettings()" class="btn-primary">Simpan</button>
+  </div>
+  <div style="background:var(--panel);padding:20px;border-radius:8px;border:1px solid var(--border);margin-top:20px">
+    <h4>Data Driver</h4>
+    <div id="driverList"></div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <input type="text" id="driverName" placeholder="Nama Driver">
+      <input type="tel" id="driverPhone" placeholder="No WA 628xxx">
+    </div>
+    <button onclick="addDriver()" class="btn-primary" style="margin-top:10px">Tambah Driver</button>
+  </div>
+</div>
+
+<div id="adminReports" class="tab-content">
+  <div style="margin-bottom:20px;display:flex;gap:10px;flex-wrap:wrap">
+    <input type="date" id="reportStartDate" style="flex:1;min-width:140px">
+    <input type="date" id="reportEndDate" style="flex:1;min-width:140px">
+    <button onclick="setLast7Days()" class="btn-secondary" style="width:auto;padding:12px">7 Hari</button>
+    <button onclick="renderReports()" class="btn-primary" style="width:auto;padding:12px 20px">Filter</button>
+    <button onclick="exportCSV()" class="btn-secondary" style="width:auto;padding:12px 20px">Export CSV</button>
+  </div>
+  <div id="reportSummary"></div>
+  <div style="background:var(--panel);padding:16px;border-radius:12px;border:1px solid var(--border);margin-bottom:20px">
+    <h4 style="margin-bottom:12px">Grafik Trend Penjualan</h4>
+    <canvas id="driverChart" height="200"></canvas>
+  </div>
+  <div id="reportByDriver"></div>
+</div>
+
+<script type="module" src="admin.js"></script>
+</body>
+</html>
